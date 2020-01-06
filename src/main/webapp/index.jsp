@@ -1,8 +1,9 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
   
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <title>
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,7 +44,7 @@
       <div class="hero-unit">
         <div>
           <h1>
-            Welcome to Fitness Tracker!
+            Welcome to Fitness Tracker <sec:authentication property="name" />!
           </h1>
           <p>
             To get started, we need to enter a goal for what we want to exercise for
@@ -51,11 +52,17 @@
           </p>
         </div>
         <a class="btn btn-primary" href="addGoal.html">
-          Add Goal »
+          Add Goal
         </a>
+
+        <sec:authorize access="hasRole('ADMIN')">
+        <a class="btn btn-primary" href="editGoal.html">
+          Edit Goal
+        </a>
+        </sec:authorize>
         
         <a class="btn btn-primary" href="addMinutes.html">
-          Add Exercise Minutes »
+          Add Exercise Minutes
         </a>
       </div>
       <div>
