@@ -14,11 +14,26 @@
 
     <authentication-manager>
         <authentication-provider>
-            <user-service>
-                <user name="julian" password="Pupstamesa2013" authorities="ROLE_USER" />
-                <user name="katrina" password="May42006" authorities="ROLE_USER" />
-            </user-service>
+            <jdbc-user-service data-source-ref="dataSource" />
         </authentication-provider>
+        <!-- 1. this is removed since this can be replaced using jdbc user service -->
+<!--        <authentication-provider user-service-ref="userDetailsService" />-->
+        <!-- 2. this is an in-memory way of storing username and password, not advisable to use -->
+<!--            <user-service>-->
+<!--                <user name="julian" password="Pupstamesa2013" authorities="ROLE_USER" />-->
+<!--                <user name="katrina" password="May42006" authorities="ROLE_USER" />-->
+<!--            </user-service>-->
     </authentication-manager>
 
+    <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <beans:property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+        <beans:property name="url" value="jdbc:mysql://localhost:3306/fitnesstracker?autoReconnect=true&amp;serverTimezone=UTC" />
+        <beans:property name="username" value="root" />
+        <beans:property name="password" value="root" />
+    </beans:bean>
+
+    <!-- 1. this is removed since this can be replaced using jdbc user service -->
+<!--    <beans:bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">-->
+<!--        <beans:property name="dataSource" ref="dataSource" />-->
+<!--    </beans:bean>-->
 </beans:beans>
