@@ -8,8 +8,8 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <http auto-config="true" >
-        <intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
+    <http auto-config="true">
+        <intercept-url pattern="/**" access="hasRole('USER')" />
     </http>
 
     <authentication-manager>
