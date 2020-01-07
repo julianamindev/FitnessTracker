@@ -9,8 +9,11 @@
         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
     <http auto-config="true">
+        <csrf disabled="true" />
+        <intercept-url pattern="/login.html" access="isAnonymous()" />
+        <intercept-url pattern="/loginFailed.html" access="isAnonymous()" />
         <intercept-url pattern="/**" access="hasRole('USER')" />
-        <http-basic />
+        <form-login login-page="/login.html" authentication-failure-url="/loginFailed.html" />
     </http>
 
     <authentication-manager>
